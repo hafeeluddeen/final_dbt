@@ -1,0 +1,14 @@
+
+version: 2
+
+sources:
+  - name: final_project
+    database: final_project
+    schema: raw
+    tables:
+      - name: EVENTS_TABLE
+      - name: TUTORS_TABLE
+      - name: USERS_TABLE
+      - name: TUTOR_AND_EVENT_TABLE
+      - name: USER_AND_INTRESTED_EVENTS
+      - name: USER_AND_REGISTERED_EVENTS_TABLE
