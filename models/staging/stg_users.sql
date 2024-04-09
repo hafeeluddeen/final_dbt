@@ -16,6 +16,7 @@ type_cast as (
             ,LASTNAME
             ,CAST(AGE AS int) AS AGE
             ,GENDER
+            ,EMAIL
 
             from required_fields
 )
