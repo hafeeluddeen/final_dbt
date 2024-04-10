@@ -1,0 +1,73 @@
+version: 2
+
+models:
+  - name: transform_users
+    description: Adds a new column to the stg_users for analytical purpose
+    columns:
+      - name: user_id
+        description: Unique identifier of each user
+        tests:
+          - unique
+          - not_null
+      - name: firstname
+        description: Firstname of the user
+      - name: lastname
+        description: Lastname of the user
+      - name: age
+        description: Age of the user
+      - name: gender
+        description: Gender of the user
+        tests:
+          - accepted_values:
+              values: ['male','female']
+      - name: email
+        description: Email of the user
+      - name: fullname
+        description: Fullname of the user ( firstname and lastname combined)
+      - name: engineer_type
+        description: Derived column bucketed based on users age
+        tests:
+          - accepted_values:
+              values: ['Early Career','Mid Career','Late Career']   
+
+  - name: transform_events
+    description: Adds a new column to the stg_users for analytical purpose
+    columns:
+      - name: event_id
+        description: Id of the event
+        tests:
+          - unique
+          - not_null
+      - name: name
+        description: Title of the event
+      - name: total_capacity
+        description: Total members that the event can hold
+      - name: tutor_id
+        description: Id of the tutor is incharge of the event
+      - name: event_type
+        description: Indicates the teaching style of the event
+        tests:
+          - accepted_values:
+              values: ['lecture','hands-on','animation']
+      - name: programming_language
+        description: Language used for that event
+      - name: framework
+        description: Framework used for that event
+      - name: duration_mins
+        description: Length of the event in mins
+      - name: mode
+        description: type of the event
+        tests:
+          - accepted_values:
+              values: ['offline','hybrid']
+      - name: location
+        description: Location at which the event takes place
+      - name: event_timing
+        description: Time at which the event takes place
+      - name: event_format
+        description: Format of the event based on duration (derived column)
+        tests:
+          - accepted_values:
+              values: ['long format', 'short format','medium format']
+       
+

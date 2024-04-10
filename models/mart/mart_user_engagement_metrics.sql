@@ -6,24 +6,72 @@
 }}
 
 with users as (
-    select * from {{ref('transform_users')}}
+
+    select
+        * 
+        
+    from {{ref('transform_users')}}
+
 ),
 events as (
-    select * from {{ref('transform_events')}}
+
+    select
+        * 
+    
+    from {{ref('transform_events')}}
+
 ),
 
 users_and_registartions as(
-    select * from {{ref('stg_user_and_registered_events')}}
+
+    select
+        *
+        
+    from {{ref('stg_user_and_registered_events')}}
+
 ),
 
 join_users as (
-    select users.user_id, users_and_registartions.event_id  from users inner join users_and_registartions on users.user_id = users_and_registartions.user_id
+
+    select
+        users.user_id,
+        users_and_registartions.event_id 
+    
+    from users
+    inner join users_and_registartions
+    
+    on users.user_id = users_and_registartions.user_id
+
 ),
+
 join_events as (
-    select join_users.user_id , events.duration_mins from events inner join join_users on events.event_id = join_users.event_id 
+
+    select
+        join_users.user_id,
+        events.duration_mins
+        
+    from events
+    inner join join_users 
+    
+    on events.event_id = join_users.event_id 
+
 )
 ,
 total_enagement_and_events as (
-    select user_id   , count(duration_mins) as total_events ,sum(duration_mins)  as total_engagement_in_minutes from join_events group by user_id
+
+    select 
+        user_id,
+        count(duration_mins) as total_events,
+        sum(duration_mins)  as total_engagement_in_minutes 
+
+    from join_events 
+    group by user_id
+
 )
-select * ,round( (total_engagement_in_minutes / total_events) , 2)as average_watch_time from total_enagement_and_events order by average_watch_time desc
+
+select
+    *,
+    round( (total_engagement_in_minutes / total_events) , 2)as average_watch_time
+
+from total_enagement_and_events
+order by average_watch_time desc
