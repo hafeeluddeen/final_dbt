@@ -10,7 +10,7 @@ add_column as (
         *, 
         case
             when duration_mins <= 60 then 'short format'
-            when duration_mins <=90 then 'medium formt'
+            when duration_mins <=90 then 'medium format'
             else 'long format'
         end as event_format
 
