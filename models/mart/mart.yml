@@ -1,0 +1,47 @@
+version: 2
+
+models:
+  - name: mart_current_skill_bucket
+    description: Current talent pool of the organization
+    columns:
+      - name: programming_language
+        description: Name of the programming language
+        tests:
+          - not_null
+      - name : framework
+        description: Name of the framework
+      - name: current_talent_pool
+        description: No of users aware about that technology
+  - name: mart_expected_future_skill_bucket
+    description : Expected talent pool for the future
+    columns:
+      - name: programming_language
+        description: Name of the programming language
+        tests:
+          - not_null
+      - name : framework
+        description: Name of the framework
+      - name: future_expected_talent_pool
+        description: No of users that might be aware about the technology in the future.
+  - name: mart_tutor_focus
+    description: Tutors focus on events based on event type and format
+    columns:
+      - name: experience
+        description: Experience type of tutors bucketed into 3 types (junior, intermediate, senior).
+      - name : event_type
+        description: How the event will be taught to the users bucketed into 3 types(hands-on, animation, lecture).
+      - name: event_format
+        description: Duration of events bucketed into 3 types(short, medium, long)
+      - name : total_sessions_taken
+        description: Describes how many session were completed on each event based on its type and format
+  - name: mart_user_engagement_metrics
+    description: Users overall engagement stats with the platform
+    columns:  
+      - name: user_id
+        description: Id of the users
+      - name: total_events
+        description: Events attended by the user in total
+      - name: total_engagement_in_minutes
+        description: Total amount of time spent by the user in the learning platform in minutes
+      - name: average_watch_time
+        description: Average time spent by the user per event in the learning platform

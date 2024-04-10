@@ -1,4 +1,9 @@
 -- Tutors focus on events based on event format
+{{
+    config(
+        tags=['mart']
+    )
+}}
 
 with events as (
     select * from {{ref('transform_events')}}

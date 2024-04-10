@@ -1,3 +1,8 @@
+{{ config(
+    tags=["mart"]
+) }}
+
+
 with events as (
     select * from {{ref('transform_events')}}
 ),

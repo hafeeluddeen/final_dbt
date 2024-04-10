@@ -1,3 +1,10 @@
+
+{{
+    config(
+        tags=['mart']
+    )
+}}
+
 with users as (
     select * from {{ref('transform_users')}}
 ),
@@ -17,6 +24,6 @@ join_events as (
 )
 ,
 total_enagement_and_events as (
-    select user_id  ,sum(duration_mins)  as total_engagement , count(duration_mins) as total_events from join_events group by user_id
+    select user_id   , count(duration_mins) as total_events ,sum(duration_mins)  as total_engagement_in_minutes from join_events group by user_id
 )
-select * ,round( (total_engagement / total_events) , 2)as average_watch_time from total_enagement_and_events order by average_watch_time desc
+select * ,round( (total_engagement_in_minutes / total_events) , 2)as average_watch_time from total_enagement_and_events order by average_watch_time desc

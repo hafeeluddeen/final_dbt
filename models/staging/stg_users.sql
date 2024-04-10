@@ -1,3 +1,7 @@
+{{ config(
+    tags=["staging"]
+) }}
+
 with 
 required_fields as(
     select _ID AS USER_ID,

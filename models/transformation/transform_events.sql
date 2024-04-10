@@ -1,3 +1,7 @@
+{{ config(
+    tags=["transformation"]
+) }}
+
 with add_column as (
     select * , 
 

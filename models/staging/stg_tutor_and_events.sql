@@ -1,3 +1,8 @@
+{{ config(
+    tags=["staging"]
+) }}
+
+
 with required_fields as (
     SELECT 
      TUTORID AS TUTOR_ID,
