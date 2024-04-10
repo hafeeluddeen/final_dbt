@@ -1,3 +1,7 @@
+{{ config(
+    tags=["staging"]
+) }}
+
 with 
 required_fields as(
     select _ID AS USER_ID,
@@ -16,6 +20,7 @@ type_cast as (
             ,LASTNAME
             ,CAST(AGE AS int) AS AGE
             ,GENDER
+            ,EMAIL
 
             from required_fields
 )
