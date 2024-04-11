@@ -1,0 +1,105 @@
+version: 2
+
+models:
+  - name: stg_users
+    description: Contains Details about the users
+    columns:
+      - name: user_id
+        description: Unique identifier of each user
+        tests:
+          - unique
+          - not_null
+      - name: firstname
+        description: Firstname of the user
+      - name: lastname
+        description: Lastname of the user
+      - name: age
+        description: Age of the user
+      - name: gender
+        description: Gender of the user
+        tests:
+          - accepted_values:
+              values: ['male','female']
+      - name: email
+        description: Email of the user
+      - name: fullname
+        description: Fullname of the user ( firstname and lastname combined)  
+
+  - name: stg_events
+    description: Conatins Details about Events
+    columns:
+      - name: event_id
+        description: Id of the event
+        tests:
+          - unique
+          - not_null
+      - name: name
+        description: Title of the event
+      - name: total_capacity
+        description: Total members that the event can hold
+      - name: tutor_id
+        description: Id of the tutor is incharge of the event
+      - name: event_type
+        description: Indicates the teaching style of the event
+        tests:
+          - accepted_values:
+              values: ['lecture','hands-on','animation']
+      - name: programming_language
+        description: Language used for that event
+      - name: framework
+        description: Framework used for that event
+      - name: duration_mins
+        description: Length of the event in mins
+      - name: mode
+        description: type of the event
+        tests:
+          - accepted_values:
+              values: ['offline','hybrid']
+      - name: location
+        description: Location at which the event takes place
+      - name: event_timing
+        description: Time at which the event takes place
+
+  - name: stg_tutors
+    description: Conatins Details about Tutors
+    columns:
+      - name: tutor_id
+        description: Id of the tutor
+        tests:
+          - unique
+          - not_null
+      - name: name
+        description: Title of the event
+      - name: email
+        description: Total members that the event can hold
+      - name: gender
+        description: Indicates the gender of the tutor
+      - name: experience
+        description: Teaching Level of each tutor
+        tests:
+          - accepted_values:
+              values: ['senior trainer', 'junior trainer','intermediate trainer']
+
+  - name: stg_tutor_and_events
+    description: contains information about which tutor instructed which event
+    columns:
+      - name: event_id
+        description: Id of the event
+      - name: tutor_id
+        description: Id of the tutor
+
+  - name: stg_user_and_intrested_events
+    description: contains information about which user showed intrest for which event
+    columns:
+      - name: event_id
+        description: Id of the event
+      - name: user_id
+        description: Id of the user
+
+  - name: stg_user_and_registered_events
+    description: contains information about which user  registered for which event
+    columns:
+      - name: event_id
+        description: Id of the event
+      - name: user_id
+        description: Id of the user
