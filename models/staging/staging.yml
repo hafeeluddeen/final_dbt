@@ -93,13 +93,29 @@ models:
     columns:
       - name: event_id
         description: Id of the event
+        tests: 
+          - relationships:
+              to: ref('stg_events')
+              field: event_id
       - name: user_id
         description: Id of the user
+        tests: 
+          - relationships:
+              to: ref('stg_users')
+              field: user_id
 
   - name: stg_user_and_registered_events
     description: contains information about which user  registered for which event
     columns:
       - name: event_id
         description: Id of the event
+        tests: 
+          - relationships:
+              to: ref('stg_events')
+              field: event_id
       - name: user_id
         description: Id of the user
+        tests: 
+          - relationships:
+              to: ref('stg_users')
+              field: user_id
